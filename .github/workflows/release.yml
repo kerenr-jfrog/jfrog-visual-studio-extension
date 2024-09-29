@@ -23,12 +23,13 @@ jobs:
         shell: pwsh
         
       - name: Commit and push changes
-        run: |
-            git config --local user.name "GitHub Actions"
-            git config --local user.email "actions@github.com"
-            git add .
-            git commit -m "Updated VSIX version to ${{ env.NEW_VERSION }}"
-            git push
+        uses: ad-m/github-push-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}  
+          commit_user_name: "GitHub Actions"
+          commit_user_email: "actions@github.com"
+          branch: ${{ github.ref_name }}
+          commit_message: "Updated VSIX version to ${{ env.NEW_VERSION }}"
 
   call-build-workflow:
       uses: ./.github/workflows/build-vsix.yml
@@ -46,14 +47,13 @@ jobs:
 
       - name: Upload VSIX to Release
         uses: actions/upload-release-asset@v1
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: ./JFrogVSExtension/bin/Release/JFrogVSExtension.vsix
           asset_name: JFrogVSExtension.vsix
           asset_content_type: application/octet-stream
-
-      #- name: Upload the .VSIX file to the release note in github
-        # run: # run a javascript script
 
         # deploy to marketplace
      # - name: Publish to Visual Studio marketplace
