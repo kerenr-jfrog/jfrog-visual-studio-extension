@@ -8,6 +8,8 @@ on:
 jobs:
   call-build-workflow:
       uses: ./.github/workflows/build-vsix.yml
+      with:
+        ref: ${{ github.event.pull_request.head.sha }}
 
   test:
     runs-on: windows-latest

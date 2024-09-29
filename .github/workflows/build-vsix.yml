@@ -2,6 +2,10 @@ name: Build VSIX
 
 on:
   workflow_call:  
+    inputs:
+       ref:
+        required: true
+        type: string
  
 jobs:
   build:
@@ -10,6 +14,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+      with:
+        ref: ${{ inputs.ref }}
 
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1

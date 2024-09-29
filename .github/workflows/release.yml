@@ -15,24 +15,26 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-        with: # remove when opening a pr
-            ref: add-release-workflow
+        with:
+            ref: ${{ github.event.release.target_commitish }}
 
       - name: Update VSIX Version in manifest file
         run: .\scripts\UpdateVsixVersion.ps1
         shell: pwsh
         
       - name: Commit and push changes
-        uses: ad-m/github-push-action@v1
+        uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}  
-          commit_user_name: "GitHub Actions"
-          commit_user_email: "actions@github.com"
-          branch: ${{ github.ref_name }}
+          commit_user_name: "GitHub Actions" # change to ecosystem user
+          commit_user_email: "actions@github.com" # change to ecosystem user
+          branch:  ${{ github.event.release.target_commitish }}
           commit_message: "Updated VSIX version to ${{ env.NEW_VERSION }}"
 
   call-build-workflow:
       uses: ./.github/workflows/build-vsix.yml
+      with: 
+         ref: ${{ github.event.release.target_commitish }}
       needs: pre-build
   
   release:
