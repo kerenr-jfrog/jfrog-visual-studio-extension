@@ -56,6 +56,11 @@ jobs:
           asset_name: JFrogVSExtension.vsix
           asset_content_type: application/octet-stream
 
-        # deploy to marketplace
-     # - name: Publish to Visual Studio marketplace
-        # run: 
+      - name: Install vsce (Visual Studio Marketplace CLI)
+        run: npm install -g vsce
+
+      - name: Publish to Visual Studio Marketplace
+        run: vsce publish --pat ${{ secrets.VSCE_PAT }}
+        env:
+          VSIX_FILE_PATH: ./JFrogVSExtension/bin/Release/JFrogVSExtension.vsix
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
