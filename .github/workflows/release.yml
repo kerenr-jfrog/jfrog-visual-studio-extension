@@ -21,12 +21,6 @@ jobs:
       - name: Update VSIX Version in manifest file
         run: .\scripts\UpdateVsixVersion.ps1
         shell: pwsh
-
-      - name: Set up JFrog CLI
-        uses: jfrog/setup-jfrog-cli@v4
-
-      - name: Run audit scan 
-        run: jf audit
         
       - name: Commit and push changes
         run: |
