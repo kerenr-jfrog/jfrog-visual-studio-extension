@@ -17,6 +17,11 @@ jobs:
             git config --global user.name "${{ github.actor }}"
             git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+            ref: master
+
       - name: Merge dev into master
         run: |
           git checkout master
