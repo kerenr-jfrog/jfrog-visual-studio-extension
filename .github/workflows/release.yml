@@ -28,7 +28,7 @@ jobs:
           git pull origin master
           git fetch --all
           git branch -a
-          git merge origin/dev
+          git merge origin/dev  --allow-unrelated-histories
 
       - name: Update VSIX Version in manifest file
         run: .\scripts\UpdateVsixVersion.ps1
