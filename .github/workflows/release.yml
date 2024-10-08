@@ -26,6 +26,7 @@ jobs:
         run: |
           git checkout master
           git pull origin master
+          git fetch --all
           git branch -a
           git merge origin/dev
 
