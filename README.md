@@ -6,6 +6,8 @@
 | Visual Studio 2017, 2019 | [![Visual Studio 2017,2019](https://vsmarketplacebadge.apphb.com/version/JFrog.JFrog.svg)](https://marketplace.visualstudio.com/items?itemName=JFrog.JFrog) |           ![Visual Studio 2017,2019](https://img.shields.io/visual-studio-marketplace/i/JFrog.JFrog?label=marketplace%20installs&color=blue&style=for-the-badge)            |
 
 
+.
+
 # Table of Contents
 
 - [About this Extension](#about-this-extension)
