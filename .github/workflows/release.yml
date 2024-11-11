@@ -38,7 +38,6 @@ jobs:
         run: |
           git fetch --all
           git checkout master
-          git pull origin master
           git merge origin/dev 
           git push
 
